@@ -1,0 +1,329 @@
+pi@raspberrypi:~/openFrameworks/apps/myApps/strange-loop $ make
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+Compiling OF library for Release
+make[1]: Entering directory '/home/pi/openFrameworks/libs/openFrameworksCompiled/project'
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+Done!
+make[1]: Leaving directory '/home/pi/openFrameworks/libs/openFrameworksCompiled/project'
+
+
+Compiling strange-loop for Release
+make[1]: Entering directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+make[1]: *** No rule to make target '/home/pi/openFrameworks/apps/myApps/feedback/src/ofApp.cpp', needed by 'obj/linuxarmv6l/Release/src/ofApp.o'.  Stop.
+make[1]: Leaving directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+/home/pi/openFrameworks/libs/openFrameworksCompiled/project/makefileCommon/compile.project.mk:124: recipe for target 'Release' failed
+make: *** [Release] Error 2
+pi@raspberrypi:~/openFrameworks/apps/myApps/strange-loop $ 
+
+
+
+
+
+pi@raspberrypi:~/openFrameworks/apps/myApps/strange-loop $ make clean && make
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+make[1]: Entering directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+make[2]: Entering directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+rm -f /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxWiringPi/./src/ofApp.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxWiringPi/./src/main.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxWiringPi/./src/ClickCounter.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxWiringPi/./src/PotentiometerController.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxWiringPi/./src/ButtonController.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXAlsa.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXReader.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/utils/PCMRemap.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/utils/RegExp.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/utils/log.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/File.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXPlayerAudio.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/linux/XMemUtils.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/BitstreamConverter.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXCore.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXStreamInfo.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXVideo.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXAudio.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXClock.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXAudioCodecOMX.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/ofRPIVideoPlayer.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/ofxOMXPlayer.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/DynamicDll.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/KeyConfig.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXThread.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Debug/ofxOMXPlayer/src/OMXPlayerVideo.o 
+rm -rf obj/linuxarmv6l/Debug/
+rm -f bin/strange-loop_debug
+rm -rf strange-loop_debug
+make[2]: Leaving directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+make[1]: Leaving directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+make[1]: Entering directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+make[2]: Entering directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+rm -f /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxWiringPi/./src/ofApp.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxWiringPi/./src/main.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxWiringPi/./src/ClickCounter.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxWiringPi/./src/PotentiometerController.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxWiringPi/./src/ButtonController.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXAlsa.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXReader.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/utils/PCMRemap.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/utils/RegExp.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/utils/log.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/File.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXPlayerAudio.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/linux/XMemUtils.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/BitstreamConverter.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXCore.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXStreamInfo.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXVideo.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXAudio.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXClock.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXAudioCodecOMX.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/ofRPIVideoPlayer.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/ofxOMXPlayer.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/DynamicDll.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/KeyConfig.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXThread.o /home/pi/openFrameworks/addons/obj/linuxarmv6l/Release/ofxOMXPlayer/src/OMXPlayerVideo.o 
+rm -rf obj/linuxarmv6l/Release/
+rm -f bin/strange-loop
+rm -rf strange-loop
+make[2]: Leaving directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+make[1]: Leaving directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+Compiling OF library for Release
+make[1]: Entering directory '/home/pi/openFrameworks/libs/openFrameworksCompiled/project'
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+Done!
+make[1]: Leaving directory '/home/pi/openFrameworks/libs/openFrameworksCompiled/project'
+
+
+Compiling strange-loop for Release
+make[1]: Entering directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+HOST_OS=Linux
+checking pkg-config libraries:   cairo zlib gstreamer-app-1.0 gstreamer-1.0 gstreamer-video-1.0 gstreamer-base-1.0 libudev freetype2 fontconfig sndfile openal libcurl glfw3 rtaudio gtk+-3.0 
+with PKG_CONFIG_LIBDIR=
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+cat: obj/linuxarmv6l/Release/.compiler_flags: No such file or directory
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Package libavdevice was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavdevice.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavdevice' found
+Package libavfilter was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavfilter.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavfilter' found
+Package libavresample was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libavresample.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libavresample' found
+Package libpostproc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libpostproc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'libpostproc' found
+Compiling /home/pi/openFrameworks/apps/myApps/strange-loop/src/ofApp.cpp
+g++ -c -O3 -DNDEBUG -Wall -Werror=return-type -std=c++14 -DGCC_HAS_REGEX -march=armv6 -mfpu=vfp -mfloat-abi=hard -fPIC -ftree-vectorize -Wno-psabi -pipe -DOF_USING_GTK -DOF_USING_GTK -DTARGET_RASPBERRY_PI -DSTANDALONE -DPIC -D_REENTRANT -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS -DTARGET_POSIX -DHAVE_LIBOPENMAX=2 -DOMX -DOMX_SKIP64BIT -DUSE_EXTERNAL_OMX -DHAVE_LIBBCM_HOST -DUSE_EXTERNAL_LIBBCM_HOST -DUSE_VCHIQ_ARM -fPIC -U_FORTIFY_SOURCE -Wall -ftree-vectorize -Wno-deprecated-declarations -Wno-sign-compare -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable  -I/opt/vc/include -I/opt/vc/include/IL -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include/interface/vmcs_host/linux -I/home/pi/openFrameworks/libs/glm/include -I/home/pi/openFrameworks/libs/glm/include/glm -I/home/pi/openFrameworks/libs/glm/include/glm/gtc -I/home/pi/openFrameworks/libs/glm/include/glm/gtx -I/home/pi/openFrameworks/libs/glm/include/glm/detail -I/home/pi/openFrameworks/libs/glm/include/glm/simd -I/home/pi/openFrameworks/libs/json/include -I/home/pi/openFrameworks/libs/kiss/include -I/home/pi/openFrameworks/libs/tess2/include -I/home/pi/openFrameworks/libs/utf8/include -I/home/pi/openFrameworks/libs/utf8/include/utf8 -I/home/pi/openFrameworks/libs/openFrameworks -I/home/pi/openFrameworks/libs/openFrameworks/communication -I/home/pi/openFrameworks/libs/openFrameworks/sound -I/home/pi/openFrameworks/libs/openFrameworks/math -I/home/pi/openFrameworks/libs/openFrameworks/utils -I/home/pi/openFrameworks/libs/openFrameworks/graphics -I/home/pi/openFrameworks/libs/openFrameworks/types -I/home/pi/openFrameworks/libs/openFrameworks/gl -I/home/pi/openFrameworks/libs/openFrameworks/events -I/home/pi/openFrameworks/libs/openFrameworks/video -I/home/pi/openFrameworks/libs/openFrameworks/app -I/home/pi/openFrameworks/libs/openFrameworks/3d -I/home/pi/openFrameworks/apps/myApps/strange-loop/src -I/. -I. -I./obj -I./obj/linuxarmv6l -I./src -I/./bin -I./bin -I./bin/data -I./bin/data/shadersES2 -I./bin/data/images -I/home/pi/openFrameworks/addons/ofxOMXPlayer/src -Isrc -MMD -MP -MF obj/linuxarmv6l/Release/src/ofApp.d -MT obj/linuxarmv6l/Release/src/ofApp.o -o obj/linuxarmv6l/Release/src/ofApp.o -c /home/pi/openFrameworks/apps/myApps/strange-loop/src/ofApp.cpp
+In file included from /home/pi/openFrameworks/libs/openFrameworks/ofMain.h:65:0,
+                 from /home/pi/openFrameworks/apps/myApps/strange-loop/src/ofApp.h:4,
+                 from /home/pi/openFrameworks/apps/myApps/strange-loop/src/ofApp.cpp:2:
+/home/pi/openFrameworks/libs/openFrameworks/graphics/ofCairoRenderer.h:4:19: fatal error: cairo.h: No such file or directory
+ #include "cairo.h"
+                   ^
+compilation terminated.
+/home/pi/openFrameworks/libs/openFrameworksCompiled/project/makefileCommon/compile.project.mk:221: recipe for target 'obj/linuxarmv6l/Release/src/ofApp.o' failed
+make[1]: *** [obj/linuxarmv6l/Release/src/ofApp.o] Error 1
+make[1]: Leaving directory '/home/pi/openFrameworks/apps/myApps/strange-loop'
+/home/pi/openFrameworks/libs/openFrameworksCompiled/project/makefileCommon/compile.project.mk:124: recipe for target 'Release' failed
+make: *** [Release] Error 2
+
