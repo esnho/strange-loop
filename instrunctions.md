@@ -1,15 +1,15 @@
 # install system dependencies
 ```
-sudo apt-get install libavformat-dev
 sudo apt-get install libavdevice-dev
 ```
 
-# install OF libraries
+# install OF addons
 ```
 cd ~/openFrameworks/addons
 git clone https://github.com/joshuajnoble/ofxWiringPi.git
 wget https://github.com/jvcleave/ofxOMXPlayer/archive/0.10.0_V2.zip
 unzip 0.10.0_V2.zip
+mv ofxOMXPlayer-0.10.0_V2 ofxOMXPlayer
 rm 0.10.0_V2.zip
 ```
 
@@ -21,6 +21,5 @@ sudo raspi-config
 
 - Select "Interfacing Options"
 - Select "SPI"
-- After enabling it reboot the device
-
-sudo reboot now
+- Exit from config tool
+- Reboot the device
