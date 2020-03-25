@@ -23,3 +23,8 @@ sudo raspi-config
 - Select "SPI"
 - Exit from config tool
 - Reboot the device
+
+# use with ofxMidi
+if like me you want to use this toy with ofxMidi you should edit ofxOMXPlayer in order to compile with ofxMidi library:
+
+https://github.com/jvcleave/ofxOMXPlayer/issues/142
