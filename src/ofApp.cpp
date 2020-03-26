@@ -7,9 +7,26 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <fstream>
 
+namespace fs = std::filesystem;
+typedef std::vector<std::string> stringvec;
+stringvec videos;
+stringvec images;
+stringvec extVideos;
+stringvec extImages;
+std::string path("/media/pi/USBKey");
+
 ///////////////////////////////////////
 //--------------------------------------------------------------
 void ofApp::setup(){
+	ctrlValues.value1 = 0.0f;
+	ctrlValues.value2 = 0.0f;
+	ctrlValues.value3 = 0.0f;
+	ctrlValues.value4 = 0.0f;
+	jsValues.js1x = 0.0f;
+	jsValues.js1y = 0.0f;
+	jsValues.js2x = 0.0f;
+	jsValues.js2y = 0.0f;
+	
 	ofSetVerticalSync(false);
 	shader1.load("shadersES2/shader1");
 	shader2.load("shadersES2/shader2");
@@ -17,7 +34,19 @@ void ofApp::setup(){
 	shader4.load("shadersES2/shader4");
 	lumakey.load("shadersES2/lumakey");
 	shader6.load("shadersES2/hueShift");
-		
+
+	//setup midi controller
+	nanoKontrol.setPortID(1);
+	nanoKontrol.setup();
+	ofAddListener(nanoKontrol.callbacks.cycle, this, &ofApp::togglePaintModeCallback);
+	ofAddListener(nanoKontrol.callbacks.player.rewind, this, &ofApp::previousSourceCallback);
+	ofAddListener(nanoKontrol.callbacks.player.forward, this, &ofApp::nextSourceCallback);
+	ofAddListener(nanoKontrol.callbacks.track.left, this, &ofApp::clearFeedbackCallback);
+	ofAddListener(nanoKontrol.callbacks.track.right, this, &ofApp::centerFrameBufferCallback);
+	ofAddListener(nanoKontrol.callbacks.marker.set, this, &ofApp::toggleSourceParamModeCallback);
+	ofAddListener(nanoKontrol.callbacks.marker.right, this, &ofApp::changeFeedbackModeCallback);
+	ofAddListener(nanoKontrol.callbacks.player.rec, this, &ofApp::toggleCamCallback);
+
 	//assigning the ADC ic's (MCP3008) pin number to potControllers
 	isReady = pot1.setup(5);
 	pot2.setup(2);
@@ -78,15 +107,15 @@ void ofApp::setup(){
 	buffer3.end();	
 
 	//The following has to be UNCOMMENTED for NTSC operation ->
-	system("sudo v4l2-ctl -d /dev/video0 --set-standard=0");
+	/* system("sudo v4l2-ctl -d /dev/video0 --set-standard=0");
 	cam.setDeviceID(0);
 	cam.setDesiredFrameRate(30);
-    	cam.initGrabber(720, 480);
+    	cam.initGrabber(720, 480); */
 	//The following has to be UNCOMMENTED for PAL operation ->
-	//system("sudo v4l2-ctl -d /dev/video0 --set-standard=6");
-	//cam.setDeviceID(0);
-	//cam.setDesiredFrameRate(25);
-    	//cam.initGrabber(720, 576);
+	system("sudo v4l2-ctl -d /dev/video0 --set-standard=6");
+	cam.setDeviceID(0);
+	cam.setDesiredFrameRate(25);
+  cam.initGrabber(720, 576);
 	
 	if(cam.isInitialized()){
 		camOn = true;
@@ -132,6 +161,8 @@ void ofApp::update(){
 	if (!isReady) {
 		return;
 	}
+
+	nanoKontrol.update();
 	
 	if(camOn){
 		cam.update();
@@ -146,7 +177,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-ofLog(OF_LOG_NOTICE,"fps: " + ofToString(ofGetFrameRate())+ " xAxis1: "  + ofToString(xAxis1) + " yAxis1:" + ofToString(yAxis1) + " xAxis2:" + ofToString(xAxis2) + " yAxis2:" + ofToString(yAxis2)) ;
+// ofLog(OF_LOG_NOTICE,"fps: " + ofToString(ofGetFrameRate())+ " xAxis1: "  + ofToString(xAxis1) + " yAxis1:" + ofToString(yAxis1) + " xAxis2:" + ofToString(xAxis2) + " yAxis2:" + ofToString(yAxis2)) ;
 	if(!player.isTextureEnabled())
 	{
 		return;
@@ -295,52 +326,47 @@ ofLog(OF_LOG_NOTICE,"fps: " + ofToString(ofGetFrameRate())+ " xAxis1: "  + ofToS
 	buffer2.draw(0, 0);
 	}
 
+	for (int i = 0; i < 8; i++) {
+    ofDrawBitmapStringHighlight(ofToString(nanoKontrol.values.ctrl[i].knob, 3), (100 * i) + 20, 100);
+  }
 
+	for (int i = 0; i < 8; i++) {
+    ofDrawBitmapStringHighlight(ofToString(nanoKontrol.values.ctrl[i].slider, 3), (100 * i) + 20, 150);
+  }
+
+	ofDrawBitmapStringHighlight(ofToString(num), 20, 200);
+	ofDrawBitmapStringHighlight(ofToString(videos[num]), 20, 240);
 }
 
 //--------------------------------------------------------------
 
 
+bool hasMidi = true;
+
 void ofApp::checkClicksRoutine(){
+	if (hasMidi) {
+		
+	} else {
+		checkClicks();
+	}
+}
+
+void ofApp::checkClicks(){
 	nClicks1 = clickCounter1.update();
 	nClicks2 = clickCounter2.update();
 	switch(nClicks1){
 		case 1:
-			//Center the framebuffer position
-			xAxis1 = 0;
-			yAxis1 = 0;
+			centerFrameBuffer();
 			nClicks1 = 0;
 			break;
 		
 		case 2:
-			//Change source position, rotation and zoom, or go back
-			//to changing parameters in the feedback
-			if(!paintMode){
-				sourceParamMode = !sourceParamMode;
-				if(sourceParamMode){
-					sourceZoomWaitRecall = true;
-					sourceRotateWaitRecall = true;
-					xAxis1 = sourceDispX;
-					yAxis1 = sourceDispY;
-				}
-				else{
-					feedbackZoomWaitRecall = true;
-					feedbackRotateWaitRecall = true;
-					xAxis1 = dispX;
-					yAxis1 = dispY;
-				}
-			}
+			toggleSourceParamMode();
 			nClicks1 = 0;
 			break;
 		
 		case 3:
-			//Jump to next video
-			if(!paintMode){
-				nextVideo();
-			}
-			else{
-				nextImage();
-			}
+			nextSource();
 			nClicks1 = 0;
 			break;
 			
@@ -352,52 +378,20 @@ void ofApp::checkClicksRoutine(){
 	
 	switch(nClicks2){
 		case 1:
-			//Zero out the feedback parameters and clear the
-			//frame buffer
-			xAxis2 = 0.0;
-			yAxis2 = 0.5;
-			buffer.begin();
-			ofClear(255,255,255, 0);
-			buffer.end();	
-			buffer2.begin();
-			ofClear(255,255,255, 0);
-			buffer2.end();	
-			buffer3.begin();
-			ofClear(255,255,255, 0);
-			buffer3.end();
+			clearFeedback();
 			nClicks2 = 0;
 			break;
 		
 		case 2:
-		    //Change feedback mode
-			if (selector < 5) {
-			selector++;}
-			else {
-			selector = 1;}
+			changeFeedbackMode();
 			nClicks2 = 0;
 			break;
-		case 3: 
-			//Go to paint mode (if images are present) and back
-			if(images.size() > 0){
-				paintMode = !paintMode;
-				if(paintMode){
-					xAxis1 = 0;
-					yAxis1 = 0;
-				}
-				else{
-					feedbackRotateWaitRecall = true;
-					feedbackZoomWaitRecall = true;
-					xAxis1 = dispX;
-					yAxis1 = dispX;
-				}
-			}
+		case 3:
+			togglePaintMode();
 			nClicks2 = 0;
 			break;
 		case 4:
-		 //switch from capture to stored videos mode if possible
-			if(cam.isInitialized()&& videos.size()>0){
-				camOn = !camOn;
-			}
+			toggleCam();
 			nClicks2 = 0;
 			break;
 		default:
@@ -406,7 +400,141 @@ void ofApp::checkClicksRoutine(){
 	}
 }
 
+void ofApp::centerFrameBufferCallback(bool & v){
+	centerFrameBuffer();
+}
+void ofApp::centerFrameBuffer(){
+	//Center the framebuffer position
+	xAxis1 = 0;
+	yAxis1 = 0;
+}
+
+void ofApp::toggleSourceParamModeCallback(bool & v){
+	toggleSourceParamMode();
+}
+void ofApp::toggleSourceParamMode(){
+	//Change source position, rotation and zoom, or go back
+	//to changing parameters in the feedback
+	if(!paintMode){
+		sourceParamMode = !sourceParamMode;
+		if(sourceParamMode){
+			sourceZoomWaitRecall = true;
+			sourceRotateWaitRecall = true;
+			xAxis1 = sourceDispX;
+			yAxis1 = sourceDispY;
+		}
+		else{
+			feedbackZoomWaitRecall = true;
+			feedbackRotateWaitRecall = true;
+			xAxis1 = dispX;
+			yAxis1 = dispY;
+		}
+	}
+}
+
+void ofApp::previousSourceCallback(bool & v){
+	previousSource();
+}
+void ofApp::previousSource(){
+	//Jump to next video
+	if(!paintMode){
+		previousVideo();
+	} else {
+		previousImage();
+	}
+}
+
+void ofApp::nextSourceCallback(bool & v){
+	nextSource();
+}
+void ofApp::nextSource(){
+	//Jump to next video
+	if(!paintMode){
+		nextVideo();
+	}
+	else{
+		nextImage();
+	}
+}
+
+void ofApp::clearFeedbackCallback(bool & v){
+	clearFeedback();
+}
+void ofApp::clearFeedback(){
+	//Zero out the feedback parameters and clear the
+	//frame buffer
+	xAxis2 = 0.0;
+	yAxis2 = 0.5;
+	buffer.begin();
+	ofClear(255,255,255, 0);
+	buffer.end();	
+	buffer2.begin();
+	ofClear(255,255,255, 0);
+	buffer2.end();	
+	buffer3.begin();
+	ofClear(255,255,255, 0);
+	buffer3.end();
+}
+
+void ofApp::changeFeedbackModeCallback(bool & v){
+	changeFeedbackMode();
+}
+void ofApp::changeFeedbackMode(){
+	//Change feedback mode
+	if (selector < 5) {
+		selector++;
+	}	else {
+		selector = 1;
+	}
+}
+
+void ofApp::togglePaintModeCallback(bool & v){
+	togglePaintMode();
+}
+void ofApp::togglePaintMode(){
+	//Go to paint mode (if images are present) and back
+	if(images.size() > 0){
+		paintMode = !paintMode;
+		if(paintMode){
+			xAxis1 = 0;
+			yAxis1 = 0;
+		}
+		else{
+			feedbackRotateWaitRecall = true;
+			feedbackZoomWaitRecall = true;
+			xAxis1 = dispX;
+			yAxis1 = dispX;
+		}
+	}
+}
+
+void ofApp::toggleCamCallback(bool & v){
+	toggleCam();
+}
+void ofApp::toggleCam(){
+	//switch from capture to stored videos mode if possible
+	if(cam.isInitialized()&& videos.size()>0){
+		camOn = !camOn;
+	}
+}
+
+
 void ofApp::checkJoysticksRoutine(){
+	if (hasMidi) {
+		jsValues.js1x = nanoKontrol.values.ctrl[0].slider * 1023.0;
+		jsValues.js1y = nanoKontrol.values.ctrl[1].slider * 1023.0;
+		jsValues.js2x = nanoKontrol.values.ctrl[2].slider * 1023.0;
+		jsValues.js2y = nanoKontrol.values.ctrl[3].slider * 1023.0;
+	} else {
+		jsValues.js1x = js1x.potValue;
+		jsValues.js1y = js1y.potValue;
+		jsValues.js2x = js2x.potValue;
+		jsValues.js2y = js2y.potValue;
+	}
+	checkJoysticks(jsValues);
+}
+
+void ofApp::checkJoysticks(joystickValues values){
 	if(!paintMode && !sourceParamMode){
 		dispX = xAxis1;
 		dispY = yAxis1;
@@ -419,17 +547,17 @@ void ofApp::checkJoysticksRoutine(){
 		sourceDispX = xAxis1;
 		sourceDispY = yAxis1;
 	}
-	if(js1y.potValue > 535 || js1y.potValue < 470){
+	if(jsValues.js1y > 535 || jsValues.js1y < 470){
 		//The last two values in the following method determine the sensibility of the joystick
-		xAxis1 += ofMap((float)js1y.potValue, 0.0, 1023.0, 0.05, -0.05);
+		xAxis1 += ofMap((float)jsValues.js1y, 0.0, 1023.0, 0.05, -0.05);
 		//These are the bounds of the frame movement
 		if(xAxis1 > 1.00)
 				xAxis1 = 1.00;
 		if(xAxis1 < -1.00)
 				xAxis1 = -1.00; 
 	}
-	if(js1x.potValue > 535 || js1x.potValue < 470){
-		yAxis1 += ofMap((float)js1x.potValue, 0.0, 1023.0, -0.05, 0.05);
+	if(jsValues.js1x > 535 || jsValues.js1x < 470){
+		yAxis1 += ofMap((float)jsValues.js1x, 0.0, 1023.0, -0.05, 0.05);
 		if(yAxis1 > 1.0)
 				yAxis1 = 1.00;
 		if(yAxis1 < -1.0)
@@ -437,8 +565,8 @@ void ofApp::checkJoysticksRoutine(){
 	
 	}
 
-	if(js2x.potValue > 535 || js2x.potValue < 470){
-		xAxis2 += ofMap((float)js2x.potValue, 0.0, 1023.0, -0.015, +0.015);
+	if(jsValues.js2x > 535 || jsValues.js2x < 470){
+		xAxis2 += ofMap((float)jsValues.js2x, 0.0, 1023.0, -0.015, +0.015);
 		//*DON'T*adjust these to alter the bounds of the parameter
 		//keep this 1.0 and 0.0 and alter the shader parameters
 		if(xAxis2 > 1.0)
@@ -446,48 +574,60 @@ void ofApp::checkJoysticksRoutine(){
 		if(xAxis2 < 0.0)
 			xAxis2 = 1.0;
 	}
-	if(js2y.potValue > 535 || js2y.potValue < 470){
-		yAxis2 += ofMap((float)js2y.potValue, 0.0, 1023.0, -0.017, +0.017);
+	if(jsValues.js2y > 535 || jsValues.js2y < 470){
+		yAxis2 += ofMap((float)jsValues.js2y, 0.0, 1023.0, -0.017, +0.017);
 		if(yAxis2 > 1.0)
 			yAxis2 = 1.0;
 		if(yAxis2 < 0.0)
 			yAxis2 = 0.0;		
 	}
-	
-
 }
 
 void ofApp::updateControlsRoutine(){
-	keyTresh = ofMap((float)pot2.potValue, 0.0, 1023.0, 0, 1.0);
+	if (hasMidi) {
+		ctrlValues.value1 = nanoKontrol.values.ctrl[0].knob;
+		ctrlValues.value2 = nanoKontrol.values.ctrl[1].knob;
+		ctrlValues.value3 = nanoKontrol.values.ctrl[2].knob;
+		ctrlValues.value4 = nanoKontrol.values.ctrl[3].knob;
+	} else {
+		ctrlValues.value1 = ofMap((float)pot1.potValue, 0.0, 1023.0, 0.0f, 1.0);
+		ctrlValues.value2 = ofMap((float)pot2.potValue, 0.0, 1023.0, 0.0f, 1.0);
+		ctrlValues.value3 = ofMap((float)pot3.potValue, 0.0, 1023.0, 0.0f, 1.0);
+		ctrlValues.value4 = ofMap((float)pot4.potValue, 0.0, 1023.0, 0.0f, 1.0);
+	}
+	updateControls(ctrlValues);
+}
+void ofApp::updateControls(controlsValues values){
+	keyTresh = values.value2;
 	if(keyTresh > -0.03 && keyTresh < 0.03){
 		keyTresh = 0.0;
 	}
 	
-	knob = ofMap((float)pot4.potValue, 0.0, 1023.0, 0.0, 1.0);
+	knob = ctrlValues.value4;
 	if(!paintMode && !sourceParamMode){
-		if(abs(zoom -  ofMap(pot1.potValue, 0, 1023, -50, +50))<10){
+		if(abs(zoom - ((ctrlValues.value1 * 100.0f) -50.0f))<10){
 			feedbackZoomWaitRecall = false;
 		}
 		if(!feedbackZoomWaitRecall){
-			zoom = ofMap(pot1.potValue, 0, 1023, -50, +50);
+			zoom = ((ctrlValues.value1 * 100.0f) -50.0f);
 		}
-		if(abs(rotate -  ofMap((float)pot3.potValue, 0, 1023, -10.0, 10.0))<2.5){
+		if(abs(rotate - ((ctrlValues.value3 * 20.0f) - 10.0f))<2.5){
 			feedbackRotateWaitRecall = false;
 		}
 		if(!feedbackRotateWaitRecall){
-			rotate = ofMap((float)pot3.potValue, 0, 1023, -10.0, 10.0);
+			rotate = ((ctrlValues.value3 * 20.0f) - 10.0f);
 		}
 	}
 	if(sourceParamMode){
 		//Don't change the parameters value until the potentiometer position
 		//almost matches the stored value
-		if(abs(oldSourceRotate - ofMap((float) pot3.potValue, 0, 1023, -180, 180))<5){
+		if(abs(oldSourceRotate - ((ctrlValues.value3 * 360.0f) - 180.0f))<5){
 			sourceRotateWaitRecall = false;
 		}
 		if(!sourceRotateWaitRecall){
 			//the following code avoids jump in the parameters 
 			//removing input noise
-			sourceRotate = ofMap((float) pot3.potValue, 0, 1023, -180, 180);
+			sourceRotate = ((ctrlValues.value3 * 360.0f) - 180.0f);
 			if(abs(sourceRotate) < 1){
 				sourceRotate = 0;
 			} 
@@ -496,11 +636,11 @@ void ofApp::updateControlsRoutine(){
 			}
 			oldSourceRotate = sourceRotate;
 		}
-		if(abs(oldSourceZoom - ofMap(pot1.potValue, 0, 1023, -600, +600))< 30){
+		if(abs(oldSourceZoom - ((ctrlValues.value1 * 1200.0f) -600.0f))< 30){
 			sourceZoomWaitRecall = false;
 		}
 		if(!sourceZoomWaitRecall){
-			sourceZoom = ofMap(pot1.potValue, 0, 1023, -600, +600);
+			sourceZoom = ((ctrlValues.value1 * 1200.0f) -600.0f);
 			if(abs(sourceZoom-oldSourceZoom) < 30){
 				sourceZoom = oldSourceZoom;
 			}
@@ -511,7 +651,7 @@ void ofApp::updateControlsRoutine(){
     // and then set dispX and dispY to 0 so that
  	//the frame buffer is centered
 	if(paintMode){
-		paintRotate = ofMap(pot3.potValue, 0, 1023, -180, 180);
+		paintRotate = ((ctrlValues.value3 * 360.0f) - 180.0f);
 		if(abs(paintRotate) < 1){
 			paintRotate = 0;
 		} 
@@ -519,7 +659,7 @@ void ofApp::updateControlsRoutine(){
 			paintRotate = oldPaintRotate;
 		}
 		oldPaintRotate = paintRotate;
-		paintZoom = ofMap(pot1.potValue, 0, 1023, -600, 600);
+		paintZoom = ((ctrlValues.value1 * 1200.0f) -600.0f);
 		if(abs(paintZoom-oldPaintZoom) < 20){
 			paintZoom = oldPaintZoom;
 		}
@@ -528,6 +668,18 @@ void ofApp::updateControlsRoutine(){
 		dispY = 0;
 	}
 }
+
+void ofApp::previousVideo(){
+	if(videos.size() > 0){
+		if (num-1 > 0){
+			num -= 1;
+		} else {
+			num = videos.size() - 1;
+		}
+		player.loadMovie(videos[num]);
+	}
+}
+
 void ofApp::nextVideo(){
 	if(videos.size() > 0){
 		if (num+1 < videos.size()){
@@ -553,6 +705,16 @@ void ofApp::drawSource(){
 		ofRotateZDeg(paintRotate);
 		paintImage.draw(-paintImage.getWidth()/2, -paintImage.getHeight()/2);
 		ofPopMatrix();
+	}
+}
+void ofApp::previousImage(){
+	if(images.size() > 0){
+		if (imageNum-1 > 0){
+			imageNum -= 1;
+		}	else {
+			imageNum = images.size() - 1;
+		}
+		paintImage.load(images[imageNum]);
 	}
 }
 void ofApp::nextImage(){
@@ -594,36 +756,32 @@ void ofApp::checkVideoPlayback(){
 		}
 		else if(!player.isFrameNew() && notLoading && !camOn){
 			if(ofGetSystemTimeMillis()-loadCount >= 1000 && loadCount > 0){
-				ofLog(OF_LOG_NOTICE, "***VIDEO WASN'T LOADING, SKIPPED IT!***");
+				ofLogNotice() << "***VIDEO WASN'T LOADING, SKIPPED IT!*** " << videos[num];
 				notLoading = false;
 				loadCount = 0;
-				nextVideo();
+				videos.erase(videos.begin()+num);
+				if (num >= videos.size()) {
+					num = videos.size() - 1;
+				}
+				player.loadMovie(videos[num]);
 			}
 		}
 		
 	}
 }
-namespace fs = std::filesystem;
-typedef std::vector<std::string> stringvec;
-stringvec videos;
-stringvec images;
-stringvec extVideos;
-stringvec extImages;
-std::string path("/media/pi/USBKey");
+
 //These two methods look through the directories in the specifed folder and selects video/image
 //files with the specified extensions.
 void ofApp::getVideos(const std::string& path, stringvec& ext,  stringvec& vector){
-	for(auto& p: fs::recursive_directory_iterator(path))
-    	{
+	for(auto& p: fs::recursive_directory_iterator(path)){
 		for(int i = 0; i < ext.size(); i++){
 			if(boost::iequals(p.path().extension().string(), ext[i])){
-			   vector.push_back(p.path().string());
-			   break;
+				vector.push_back(p.path().string());
+				break;
 			}
 		}
 		std::sort(vector.begin(),vector.end());
-        }
-
+	}
 }
 void ofApp::getImages(const std::string& path, stringvec& ext,  stringvec& vector){
 	for(auto& p: fs::recursive_directory_iterator(path))

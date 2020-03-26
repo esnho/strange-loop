@@ -1,6 +1,6 @@
 obj/linuxarmv6l/Release/src/PotentiometerController.o: \
- /home/pi/openFrameworks/apps/myApps/feedback/src/PotentiometerController.cpp \
- /home/pi/openFrameworks/apps/myApps/feedback/src/PotentiometerController.h \
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/PotentiometerController.cpp \
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/PotentiometerController.h \
  /home/pi/openFrameworks/libs/openFrameworks/ofMain.h \
  /home/pi/openFrameworks/libs/openFrameworks/utils/ofConstants.h \
  /opt/vc/include/bcm_host.h \
@@ -371,6 +371,9 @@ obj/linuxarmv6l/Release/src/PotentiometerController.o: \
  /home/pi/openFrameworks/libs/openFrameworks/gl/ofMaterial.h \
  /home/pi/openFrameworks/libs/openFrameworks/gl/ofShader.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofCairoRenderer.h \
+ /usr/include/cairo/cairo.h /usr/include/cairo/cairo-version.h \
+ /usr/include/cairo/cairo-features.h \
+ /usr/include/cairo/cairo-deprecated.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofImage.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofRendererCollection.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofTrueTypeFont.h \
@@ -583,7 +586,7 @@ obj/linuxarmv6l/Release/src/PotentiometerController.o: \
  /home/pi/openFrameworks/libs/openFrameworks/3d/ofCamera.h \
  /home/pi/openFrameworks/libs/openFrameworks/3d/ofEasyCam.h
 
-/home/pi/openFrameworks/apps/myApps/feedback/src/PotentiometerController.h:
+/home/pi/openFrameworks/apps/myApps/strange-loop/src/PotentiometerController.h:
 
 /home/pi/openFrameworks/libs/openFrameworks/ofMain.h:
 
@@ -1334,6 +1337,14 @@ obj/linuxarmv6l/Release/src/PotentiometerController.o: \
 /home/pi/openFrameworks/libs/openFrameworks/gl/ofShader.h:
 
 /home/pi/openFrameworks/libs/openFrameworks/graphics/ofCairoRenderer.h:
+
+/usr/include/cairo/cairo.h:
+
+/usr/include/cairo/cairo-version.h:
+
+/usr/include/cairo/cairo-features.h:
+
+/usr/include/cairo/cairo-deprecated.h:
 
 /home/pi/openFrameworks/libs/openFrameworks/graphics/ofImage.h:
 

@@ -1,6 +1,6 @@
 obj/linuxarmv6l/Release/src/ClickCounter.o: \
- /home/pi/openFrameworks/apps/myApps/feedback/src/ClickCounter.cpp \
- /home/pi/openFrameworks/apps/myApps/feedback/src/ClickCounter.h \
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/ClickCounter.cpp \
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/ClickCounter.h \
  /home/pi/openFrameworks/libs/openFrameworks/ofMain.h \
  /home/pi/openFrameworks/libs/openFrameworks/utils/ofConstants.h \
  /opt/vc/include/bcm_host.h \
@@ -371,6 +371,9 @@ obj/linuxarmv6l/Release/src/ClickCounter.o: \
  /home/pi/openFrameworks/libs/openFrameworks/gl/ofMaterial.h \
  /home/pi/openFrameworks/libs/openFrameworks/gl/ofShader.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofCairoRenderer.h \
+ /usr/include/cairo/cairo.h /usr/include/cairo/cairo-version.h \
+ /usr/include/cairo/cairo-features.h \
+ /usr/include/cairo/cairo-deprecated.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofImage.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofRendererCollection.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofTrueTypeFont.h \
@@ -582,9 +585,9 @@ obj/linuxarmv6l/Release/src/ClickCounter.o: \
  /home/pi/openFrameworks/libs/openFrameworks/3d/of3dUtils.h \
  /home/pi/openFrameworks/libs/openFrameworks/3d/ofCamera.h \
  /home/pi/openFrameworks/libs/openFrameworks/3d/ofEasyCam.h \
- /home/pi/openFrameworks/apps/myApps/feedback/src/ButtonController.h
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/ButtonController.h
 
-/home/pi/openFrameworks/apps/myApps/feedback/src/ClickCounter.h:
+/home/pi/openFrameworks/apps/myApps/strange-loop/src/ClickCounter.h:
 
 /home/pi/openFrameworks/libs/openFrameworks/ofMain.h:
 
@@ -1336,6 +1339,14 @@ obj/linuxarmv6l/Release/src/ClickCounter.o: \
 
 /home/pi/openFrameworks/libs/openFrameworks/graphics/ofCairoRenderer.h:
 
+/usr/include/cairo/cairo.h:
+
+/usr/include/cairo/cairo-version.h:
+
+/usr/include/cairo/cairo-features.h:
+
+/usr/include/cairo/cairo-deprecated.h:
+
 /home/pi/openFrameworks/libs/openFrameworks/graphics/ofImage.h:
 
 /home/pi/openFrameworks/libs/openFrameworks/graphics/ofRendererCollection.h:
@@ -1786,4 +1797,4 @@ obj/linuxarmv6l/Release/src/ClickCounter.o: \
 
 /home/pi/openFrameworks/libs/openFrameworks/3d/ofEasyCam.h:
 
-/home/pi/openFrameworks/apps/myApps/feedback/src/ButtonController.h:
+/home/pi/openFrameworks/apps/myApps/strange-loop/src/ButtonController.h:

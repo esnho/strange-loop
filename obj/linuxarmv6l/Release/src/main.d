@@ -1,5 +1,5 @@
 obj/linuxarmv6l/Release/src/main.o: \
- /home/pi/openFrameworks/apps/myApps/feedback/src/main.cpp \
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/main.cpp \
  /home/pi/openFrameworks/libs/openFrameworks/ofMain.h \
  /home/pi/openFrameworks/libs/openFrameworks/utils/ofConstants.h \
  /opt/vc/include/bcm_host.h \
@@ -370,6 +370,9 @@ obj/linuxarmv6l/Release/src/main.o: \
  /home/pi/openFrameworks/libs/openFrameworks/gl/ofMaterial.h \
  /home/pi/openFrameworks/libs/openFrameworks/gl/ofShader.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofCairoRenderer.h \
+ /usr/include/cairo/cairo.h /usr/include/cairo/cairo-version.h \
+ /usr/include/cairo/cairo-features.h \
+ /usr/include/cairo/cairo-deprecated.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofImage.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofRendererCollection.h \
  /home/pi/openFrameworks/libs/openFrameworks/graphics/ofTrueTypeFont.h \
@@ -581,10 +584,10 @@ obj/linuxarmv6l/Release/src/main.o: \
  /home/pi/openFrameworks/libs/openFrameworks/3d/of3dUtils.h \
  /home/pi/openFrameworks/libs/openFrameworks/3d/ofCamera.h \
  /home/pi/openFrameworks/libs/openFrameworks/3d/ofEasyCam.h \
- /home/pi/openFrameworks/apps/myApps/feedback/src/ofApp.h \
- /home/pi/openFrameworks/apps/myApps/feedback/src/PotentiometerController.h \
- /home/pi/openFrameworks/apps/myApps/feedback/src/ButtonController.h \
- /home/pi/openFrameworks/apps/myApps/feedback/src/ClickCounter.h \
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/ofApp.h \
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/PotentiometerController.h \
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/ButtonController.h \
+ /home/pi/openFrameworks/apps/myApps/strange-loop/src/ClickCounter.h \
  /home/pi/openFrameworks/addons/ofxOMXPlayer/src/ofxOMXPlayer.h \
  /home/pi/openFrameworks/addons/ofxOMXPlayer/src/ofxOMXPlayerEngine.h \
  /home/pi/openFrameworks/addons/ofxOMXPlayer/src/OMXReader.h \
@@ -622,7 +625,20 @@ obj/linuxarmv6l/Release/src/main.o: \
  /home/pi/openFrameworks/addons/ofxOMXPlayer/src/DllSwResample.h \
  /home/pi/openFrameworks/addons/ofxOMXPlayer/src/KeyConfig.h \
  /home/pi/openFrameworks/addons/ofxOMXPlayer/src/utils/Strprintf.h \
- /home/pi/openFrameworks/libs/openFrameworks/app/ofAppEGLWindow.h
+ /home/pi/openFrameworks/libs/openFrameworks/app/ofAppEGLWindow.h \
+ /home/pi/openFrameworks/addons/ofxNanoKontrolTwo/src/ofxNanoKontrolTwo.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/ofxMidi.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiIn.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/ofxBaseMidi.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiConstants.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiMessage.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiTypes.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/desktop/ofxRtMidiIn.h \
+ /home/pi/openFrameworks/addons/ofxMidi/libs/rtmidi/RtMidi.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiOut.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/desktop/ofxRtMidiOut.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiClock.h \
+ /home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiTimecode.h
 
 /home/pi/openFrameworks/libs/openFrameworks/ofMain.h:
 
@@ -1374,6 +1390,14 @@ obj/linuxarmv6l/Release/src/main.o: \
 
 /home/pi/openFrameworks/libs/openFrameworks/graphics/ofCairoRenderer.h:
 
+/usr/include/cairo/cairo.h:
+
+/usr/include/cairo/cairo-version.h:
+
+/usr/include/cairo/cairo-features.h:
+
+/usr/include/cairo/cairo-deprecated.h:
+
 /home/pi/openFrameworks/libs/openFrameworks/graphics/ofImage.h:
 
 /home/pi/openFrameworks/libs/openFrameworks/graphics/ofRendererCollection.h:
@@ -1824,13 +1848,13 @@ obj/linuxarmv6l/Release/src/main.o: \
 
 /home/pi/openFrameworks/libs/openFrameworks/3d/ofEasyCam.h:
 
-/home/pi/openFrameworks/apps/myApps/feedback/src/ofApp.h:
+/home/pi/openFrameworks/apps/myApps/strange-loop/src/ofApp.h:
 
-/home/pi/openFrameworks/apps/myApps/feedback/src/PotentiometerController.h:
+/home/pi/openFrameworks/apps/myApps/strange-loop/src/PotentiometerController.h:
 
-/home/pi/openFrameworks/apps/myApps/feedback/src/ButtonController.h:
+/home/pi/openFrameworks/apps/myApps/strange-loop/src/ButtonController.h:
 
-/home/pi/openFrameworks/apps/myApps/feedback/src/ClickCounter.h:
+/home/pi/openFrameworks/apps/myApps/strange-loop/src/ClickCounter.h:
 
 /home/pi/openFrameworks/addons/ofxOMXPlayer/src/ofxOMXPlayer.h:
 
@@ -1921,3 +1945,29 @@ obj/linuxarmv6l/Release/src/main.o: \
 /home/pi/openFrameworks/addons/ofxOMXPlayer/src/utils/Strprintf.h:
 
 /home/pi/openFrameworks/libs/openFrameworks/app/ofAppEGLWindow.h:
+
+/home/pi/openFrameworks/addons/ofxNanoKontrolTwo/src/ofxNanoKontrolTwo.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/ofxMidi.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiIn.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/ofxBaseMidi.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiConstants.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiMessage.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiTypes.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/desktop/ofxRtMidiIn.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/libs/rtmidi/RtMidi.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiOut.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/desktop/ofxRtMidiOut.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiClock.h:
+
+/home/pi/openFrameworks/addons/ofxMidi/src/ofxMidiTimecode.h:

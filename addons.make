@@ -1,2 +1,4 @@
 ofxWiringPi
 ofxOMXPlayer
+ofxMidi
+ofxNanoKontrolTwo

@@ -8,9 +8,23 @@
 #include "wiringPi.h"
 #include "wiringPiSPI.h"
 #include "ofxOMXPlayer.h"
+#include <ofxNanoKontrolTwo.h>
 
 
 typedef std::vector<std::string> stringvec;
+
+struct controlsValues {
+	float value1;
+	float value2;
+	float value3;
+	float value4;
+};
+struct joystickValues {
+	float js1x;
+	float js1y;
+	float js2x;
+	float js2y;
+};
 
 class ofApp : public ofBaseApp{
 	public:
@@ -24,13 +38,42 @@ class ofApp : public ofBaseApp{
 		void drawSource();
 		void nextVideo();
 		void nextImage();
+		void previousVideo();
+		void previousImage();
 		void powerOffCheckRoutine();
 		void checkClicksRoutine();
 		void checkJoysticksRoutine();
 		void updateControlsRoutine();
 		void checkVideoPlayback();
-		
 
+		void checkClicks();
+		void checkJoysticks(joystickValues values);
+		void updateControls(controlsValues values);
+
+		// left clicks
+		void centerFrameBuffer();
+		void centerFrameBufferCallback(bool & v);
+		void toggleSourceParamMode();
+		void toggleSourceParamModeCallback(bool & v);
+		void nextSource();
+		void nextSourceCallback(bool & v);
+		void previousSource();
+		void previousSourceCallback(bool & v);
+
+		// right clicks
+		void clearFeedback();
+		void clearFeedbackCallback(bool & v);
+		void changeFeedbackMode();
+		void changeFeedbackModeCallback(bool & v);
+		void togglePaintMode();
+		void togglePaintModeCallback(bool & v);
+		void toggleCam();
+		void toggleCamCallback(bool & v);
+
+		controlsValues ctrlValues;
+		joystickValues jsValues;
+		
+ 		ofxNanoKontrolTwo nanoKontrol;
 	
 		ClickCounter clickCounter1, clickCounter2;
 		PotentiometerController pot1, pot2, pot3, pot4, js1x, js1y, js2x, js2y;
