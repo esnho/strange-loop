@@ -15,6 +15,8 @@ stringvec extVideos;
 stringvec extImages;
 std::string path("/media/pi/USBKey");
 
+bool foundMidiController = false;
+
 ///////////////////////////////////////
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -37,15 +39,17 @@ void ofApp::setup(){
 
 	//setup midi controller
 	nanoKontrol.setPortID(1);
-	nanoKontrol.setup();
-	ofAddListener(nanoKontrol.callbacks.cycle, this, &ofApp::togglePaintModeCallback);
-	ofAddListener(nanoKontrol.callbacks.player.rewind, this, &ofApp::previousSourceCallback);
-	ofAddListener(nanoKontrol.callbacks.player.forward, this, &ofApp::nextSourceCallback);
-	ofAddListener(nanoKontrol.callbacks.track.left, this, &ofApp::clearFeedbackCallback);
-	ofAddListener(nanoKontrol.callbacks.track.right, this, &ofApp::centerFrameBufferCallback);
-	ofAddListener(nanoKontrol.callbacks.marker.set, this, &ofApp::toggleSourceParamModeCallback);
-	ofAddListener(nanoKontrol.callbacks.marker.right, this, &ofApp::changeFeedbackModeCallback);
-	ofAddListener(nanoKontrol.callbacks.player.rec, this, &ofApp::toggleCamCallback);
+	foundMidiController = nanoKontrol.setup();
+	if (foundMidiController) {
+		ofAddListener(nanoKontrol.callbacks.cycle, this, &ofApp::togglePaintModeCallback);
+		ofAddListener(nanoKontrol.callbacks.player.rewind, this, &ofApp::previousSourceCallback);
+		ofAddListener(nanoKontrol.callbacks.player.forward, this, &ofApp::nextSourceCallback);
+		ofAddListener(nanoKontrol.callbacks.track.left, this, &ofApp::clearFeedbackCallback);
+		ofAddListener(nanoKontrol.callbacks.track.right, this, &ofApp::centerFrameBufferCallback);
+		ofAddListener(nanoKontrol.callbacks.marker.set, this, &ofApp::toggleSourceParamModeCallback);
+		ofAddListener(nanoKontrol.callbacks.marker.right, this, &ofApp::changeFeedbackModeCallback);
+		ofAddListener(nanoKontrol.callbacks.player.rec, this, &ofApp::toggleCamCallback);
+	}
 
 	//assigning the ADC ic's (MCP3008) pin number to potControllers
 	isReady = pot1.setup(5);
@@ -340,11 +344,8 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 
-
-bool hasMidi = true;
-
 void ofApp::checkClicksRoutine(){
-	if (hasMidi) {
+	if (foundMidiController) {
 		
 	} else {
 		checkClicks();
@@ -520,7 +521,7 @@ void ofApp::toggleCam(){
 
 
 void ofApp::checkJoysticksRoutine(){
-	if (hasMidi) {
+	if (foundMidiController) {
 		jsValues.js1x = nanoKontrol.values.ctrl[0].slider * 1023.0;
 		jsValues.js1y = nanoKontrol.values.ctrl[1].slider * 1023.0;
 		jsValues.js2x = nanoKontrol.values.ctrl[2].slider * 1023.0;
@@ -584,7 +585,7 @@ void ofApp::checkJoysticks(joystickValues values){
 }
 
 void ofApp::updateControlsRoutine(){
-	if (hasMidi) {
+	if (foundMidiController) {
 		ctrlValues.value1 = nanoKontrol.values.ctrl[0].knob;
 		ctrlValues.value2 = nanoKontrol.values.ctrl[1].knob;
 		ctrlValues.value3 = nanoKontrol.values.ctrl[2].knob;
