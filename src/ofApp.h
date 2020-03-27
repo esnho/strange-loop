@@ -69,6 +69,9 @@ class ofApp : public ofBaseApp{
 		void togglePaintModeCallback(bool & v);
 		void toggleCam();
 		void toggleCamCallback(bool & v);
+	
+		bool debug = false;
+		bool isPal = false;
 
 		controlsValues ctrlValues;
 		joystickValues jsValues;

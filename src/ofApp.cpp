@@ -110,16 +110,17 @@ void ofApp::setup(){
 	ofClear(255,255,255, 0);
 	buffer3.end();	
 
-	//The following has to be UNCOMMENTED for NTSC operation ->
-	/* system("sudo v4l2-ctl -d /dev/video0 --set-standard=0");
-	cam.setDeviceID(0);
-	cam.setDesiredFrameRate(30);
-    	cam.initGrabber(720, 480); */
-	//The following has to be UNCOMMENTED for PAL operation ->
-	system("sudo v4l2-ctl -d /dev/video0 --set-standard=6");
-	cam.setDeviceID(0);
-	cam.setDesiredFrameRate(25);
-  cam.initGrabber(720, 576);
+	if (isPal) {
+		system("sudo v4l2-ctl -d /dev/video0 --set-standard=6");
+		cam.setDeviceID(0);
+		cam.setDesiredFrameRate(25);
+		cam.initGrabber(720, 576);
+	} else {
+		system("sudo v4l2-ctl -d /dev/video0 --set-standard=0");
+		cam.setDeviceID(0);
+		cam.setDesiredFrameRate(30);
+    cam.initGrabber(720, 480);
+	}
 	
 	if(cam.isInitialized()){
 		camOn = true;
@@ -181,7 +182,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-// ofLog(OF_LOG_NOTICE,"fps: " + ofToString(ofGetFrameRate())+ " xAxis1: "  + ofToString(xAxis1) + " yAxis1:" + ofToString(yAxis1) + " xAxis2:" + ofToString(xAxis2) + " yAxis2:" + ofToString(yAxis2)) ;
+	if (debug) {
+		ofLog(OF_LOG_NOTICE,"fps: " + ofToString(ofGetFrameRate())+ " xAxis1: "  + ofToString(xAxis1) + " yAxis1:" + ofToString(yAxis1) + " xAxis2:" + ofToString(xAxis2) + " yAxis2:" + ofToString(yAxis2));
+	}
+
 	if(!player.isTextureEnabled())
 	{
 		return;
@@ -330,16 +334,20 @@ void ofApp::draw() {
 	buffer2.draw(0, 0);
 	}
 
-	for (int i = 0; i < 8; i++) {
-    ofDrawBitmapStringHighlight(ofToString(nanoKontrol.values.ctrl[i].knob, 3), (100 * i) + 20, 100);
-  }
 
-	for (int i = 0; i < 8; i++) {
-    ofDrawBitmapStringHighlight(ofToString(nanoKontrol.values.ctrl[i].slider, 3), (100 * i) + 20, 150);
-  }
+	if (debug) {
+		ofDrawBitmapStringHighlight(isPal ? "PAL" : "NTSC", 20, 30);
+		for (int i = 0; i < 8; i++) {
+			ofDrawBitmapStringHighlight(ofToString(nanoKontrol.values.ctrl[i].knob, 3), (100 * i) + 20, 100);
+		}
 
-	ofDrawBitmapStringHighlight(ofToString(num), 20, 200);
-	ofDrawBitmapStringHighlight(ofToString(videos[num]), 20, 240);
+		for (int i = 0; i < 8; i++) {
+			ofDrawBitmapStringHighlight(ofToString(nanoKontrol.values.ctrl[i].slider, 3), (100 * i) + 20, 150);
+		}
+
+		ofDrawBitmapStringHighlight(ofToString(num), 20, 200);
+		ofDrawBitmapStringHighlight(ofToString(videos[num]), 20, 240);
+	}
 }
 
 //--------------------------------------------------------------
